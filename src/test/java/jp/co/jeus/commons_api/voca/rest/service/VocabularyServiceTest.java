@@ -24,7 +24,7 @@ public class VocabularyServiceTest {
     private VocabularyRepository vocabularyRepository;
 
     @Test
-    public void test() {
+    public void testSingleResult() {
         // when
         Vocabulary voca = new Vocabulary(1,"test","テスト","테스트");
         when(vocabularyRepository.findAll()).thenReturn(List.of(voca));
@@ -36,5 +36,26 @@ public class VocabularyServiceTest {
         assertThat(actual.getEn()).isEqualTo(voca.getEn());
         assertThat(actual.getJp()).isEqualTo(voca.getJp());
         assertThat(actual.getKr()).isEqualTo(voca.getKr());
+    }
+
+    @Test
+    public void testMultiResult() {
+        // when
+        Vocabulary voca1 = new Vocabulary(1,"test","テスト","테스트");
+        Vocabulary voca2 = new Vocabulary(1,"test","テスト","테스트");
+        when(vocabularyRepository.findAll()).thenReturn(List.of(voca1, voca2));
+        VocaSearchResponseDto responseDto = vocabularyService.findAll();
+
+        // then
+        assertThat(responseDto.getResults().size()).isEqualTo(2);
+        VocabularyDto actual = responseDto.getResults().get(0);
+        assertThat(actual.getEn()).isEqualTo(voca1.getEn());
+        assertThat(actual.getJp()).isEqualTo(voca1.getJp());
+        assertThat(actual.getKr()).isEqualTo(voca1.getKr());
+
+        actual = responseDto.getResults().get(1);
+        assertThat(actual.getEn()).isEqualTo(voca2.getEn());
+        assertThat(actual.getJp()).isEqualTo(voca2.getJp());
+        assertThat(actual.getKr()).isEqualTo(voca2.getKr());
     }
 }
