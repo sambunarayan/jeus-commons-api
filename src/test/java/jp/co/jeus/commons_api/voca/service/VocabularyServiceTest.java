@@ -1,4 +1,4 @@
-package jp.co.jeus.commons_api.voca.rest.service;
+package jp.co.jeus.commons_api.voca.service;
 
 import jp.co.jeus.commons_api.commons.repository.VocabularyRepository;
 import jp.co.jeus.commons_api.commons.repository.entity.Vocabulary;
@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,6 +23,16 @@ public class VocabularyServiceTest {
     private VocabularyService vocabularyService;
     @Mock
     private VocabularyRepository vocabularyRepository;
+
+    @Test
+    public void testNoResult() {
+        // when
+        when(vocabularyRepository.findAll()).thenReturn(Collections.emptyList());
+        VocaSearchResponseDto responseDto = vocabularyService.findAll();
+
+        // then
+        assertThat(responseDto.getResults().isEmpty()).isTrue();
+    }
 
     @Test
     public void testSingleResult() {
