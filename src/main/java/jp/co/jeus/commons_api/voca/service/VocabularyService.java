@@ -1,5 +1,6 @@
 package jp.co.jeus.commons_api.voca.service;
 
+import jp.co.jeus.commons_api.commons.constants.Result;
 import jp.co.jeus.commons_api.commons.dto.VocabularyRegistrationDto;
 import jp.co.jeus.commons_api.commons.repository.VocabularyRepository;
 import jp.co.jeus.commons_api.commons.repository.entity.Vocabulary;
@@ -26,7 +27,7 @@ public class VocabularyService {
                 .stream()
                 .map(e -> new VocabularyDto(e.getEn(), e.getJp(), e.getKr()))
                 .collect(Collectors.toList());
-        return new VocaSearchResponseDto(vocalbularies);
+        return new VocaSearchResponseDto(Result.SUCCESS, vocalbularies);
     }
 
     /**
