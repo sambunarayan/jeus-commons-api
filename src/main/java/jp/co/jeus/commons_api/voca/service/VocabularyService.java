@@ -6,6 +6,9 @@ import jp.co.jeus.commons_api.commons.repository.VocabularyRepository;
 import jp.co.jeus.commons_api.commons.repository.entity.Vocabulary;
 import jp.co.jeus.commons_api.voca.dto.VocaSearchResponseDto;
 import jp.co.jeus.commons_api.voca.dto.VocabularyDto;
+import jp.co.jeus.commons_api.voca.rest.controller.VocaDataRestController;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class VocabularyService {
+
+    private Logger logger = LogManager.getLogger(VocabularyService.class);
 
     @Autowired
     private VocabularyRepository vocabularyRepository;
