@@ -1,10 +1,10 @@
 package jp.co.jeus.commons_api.voca.service;
 
+import jp.co.jeus.commons_api.commons.dto.VocabularyRegistrationDto;
 import jp.co.jeus.commons_api.commons.repository.VocabularyRepository;
 import jp.co.jeus.commons_api.commons.repository.entity.Vocabulary;
 import jp.co.jeus.commons_api.voca.dto.VocaSearchResponseDto;
 import jp.co.jeus.commons_api.voca.dto.VocabularyDto;
-import jp.co.jeus.commons_api.voca.service.VocabularyService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -14,7 +14,8 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class VocabularyServiceTest {
@@ -68,5 +69,19 @@ public class VocabularyServiceTest {
         assertThat(actual.getEn()).isEqualTo(voca2.getEn());
         assertThat(actual.getJp()).isEqualTo(voca2.getJp());
         assertThat(actual.getKr()).isEqualTo(voca2.getKr());
+    }
+
+    @Test
+    public void testRegisterVocabulary() {
+        VocabularyRegistrationDto requestDto = new VocabularyRegistrationDto();
+        requestDto.setEn("test");
+        requestDto.setJp("テスト");
+        requestDto.setKr("테스트");
+
+        // when
+        vocabularyService.registerVocabulary(requestDto);
+
+        // then
+        verify(vocabularyRepository, times(1)).save(any());
     }
 }
