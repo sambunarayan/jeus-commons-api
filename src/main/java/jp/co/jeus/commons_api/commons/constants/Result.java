@@ -4,24 +4,40 @@ public enum Result {
     /**
      *
      */
-    SUCCESS("Success"),
+    SUCCESS(0, "Success", "Success"),
     /**
      *
      */
-    EMPTY("Empty"),;
+    EMPTY(1, "Empty", "No contents"),
+    /**
+     *
+     */
+    INTERNAL_SERVER_ERROR(99, "Internal server error", "Unexpected error has occurred");
 
-    private final String type;
+    private final int code;
+    private final String name;
+    private final String details;
 
-    private Result(String type) {
-        this.type = type;
+    private Result(int code, String name, String details) {
+        this.code = code;
+        this.name = name;
+        this.details = details;
     }
 
-    public String getType() {
-        return this.type;
+    public int getCode() {
+        return this.code;
+    }
+
+    public String getCodeName() {
+        return this.name;
+    }
+
+    public String getDetails() {
+        return this.details;
     }
 
     @Override
     public String toString() {
-        return this.type;
+        return this.name;
     }
 }

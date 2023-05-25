@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.lang.reflect.RecordComponent;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -51,7 +53,7 @@ public class VocaDataRestControllerTest {
 
         // when
         mvc.perform(post("/voca/add")
-                .contentType("application/json")
+                        .contentType("application/json")
                         .content(new Gson().toJson(requestDto)))
                 .andExpect(status().isOk());
 

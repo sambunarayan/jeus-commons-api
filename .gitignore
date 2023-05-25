@@ -1,5 +1,7 @@
 .gradle
 .idea
 target
+logs
 *.log
 *.class
+*.gz
