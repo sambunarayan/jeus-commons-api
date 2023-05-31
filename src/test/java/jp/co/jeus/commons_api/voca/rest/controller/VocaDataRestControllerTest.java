@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class VocaDataRestControllerTest {
+class VocaDataRestControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -32,7 +32,7 @@ public class VocaDataRestControllerTest {
     }
 
     @Test
-    public void testfindAll() throws Exception {
+    void testfindAll() throws Exception {
         // when
         mvc.perform(get("/voca/find-all")
                         .contentType("application/json"))
@@ -43,7 +43,7 @@ public class VocaDataRestControllerTest {
     }
 
     @Test
-    public void testAdd() throws Exception {
+    void testAdd() throws Exception {
         VocabularyRegistrationDto requestDto = new VocabularyRegistrationDto();
         requestDto.setEn("test");
         requestDto.setJp("テスト");

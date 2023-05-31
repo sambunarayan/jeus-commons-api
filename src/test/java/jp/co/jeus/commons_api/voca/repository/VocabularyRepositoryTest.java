@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class VocabularyRepositoryTest {
+class VocabularyRepositoryTest {
 
     @Autowired
     private VocabularyRepository vocabularyRepository;
@@ -34,10 +34,10 @@ public class VocabularyRepositoryTest {
     }
 
     @Test
-    public void testFindAll() {
+    void testFindAll() {
         List<Vocabulary> actual =  vocabularyRepository.findAll();
 
         // then
-        assertThat(actual.isEmpty()).isFalse();
+        assertThat(actual).isEmpty();
     }
 }

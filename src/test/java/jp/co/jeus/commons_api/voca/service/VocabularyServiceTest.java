@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class VocabularyServiceTest {
+class VocabularyServiceTest {
 
     @InjectMocks
     private VocabularyService vocabularyService;
@@ -26,24 +26,24 @@ public class VocabularyServiceTest {
     private VocabularyRepository vocabularyRepository;
 
     @Test
-    public void testNoResult() {
+    void testNoResult() {
         // when
         when(vocabularyRepository.findAll()).thenReturn(Collections.emptyList());
         VocaSearchResponseDto responseDto = vocabularyService.findAll();
 
         // then
-        assertThat(responseDto.getResults().isEmpty()).isTrue();
+        assertThat(responseDto.getResults()).isEmpty();
     }
 
     @Test
-    public void testSingleResult() {
+    void testSingleResult() {
         // when
         Vocabulary voca = new Vocabulary(1,"test","テスト","테스트");
         when(vocabularyRepository.findAll()).thenReturn(List.of(voca));
         VocaSearchResponseDto responseDto = vocabularyService.findAll();
 
         // then
-        assertThat(responseDto.getResults().isEmpty()).isFalse();
+        assertThat(responseDto.getResults()).isNotEmpty();
         VocabularyDto actual = responseDto.getResults().get(0);
         assertThat(actual.getEn()).isEqualTo(voca.getEn());
         assertThat(actual.getJp()).isEqualTo(voca.getJp());
@@ -51,7 +51,7 @@ public class VocabularyServiceTest {
     }
 
     @Test
-    public void testMultiResult() {
+    void testMultiResult() {
         // when
         Vocabulary voca1 = new Vocabulary(1,"test","テスト","테스트");
         Vocabulary voca2 = new Vocabulary(1,"test","テスト","테스트");
@@ -59,7 +59,7 @@ public class VocabularyServiceTest {
         VocaSearchResponseDto responseDto = vocabularyService.findAll();
 
         // then
-        assertThat(responseDto.getResults().size()).isEqualTo(2);
+        assertThat(responseDto.getResults()).hasSize(2);
         VocabularyDto actual = responseDto.getResults().get(0);
         assertThat(actual.getEn()).isEqualTo(voca1.getEn());
         assertThat(actual.getJp()).isEqualTo(voca1.getJp());
@@ -72,7 +72,7 @@ public class VocabularyServiceTest {
     }
 
     @Test
-    public void testRegisterVocabulary() {
+    void testRegisterVocabulary() {
         VocabularyRegistrationDto requestDto = new VocabularyRegistrationDto();
         requestDto.setEn("test");
         requestDto.setJp("テスト");
