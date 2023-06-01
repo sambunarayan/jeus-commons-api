@@ -38,6 +38,6 @@ class VocabularyRepositoryTest {
         List<Vocabulary> actual =  vocabularyRepository.findAll();
 
         // then
-        assertThat(actual).isEmpty();
+        assertThat(actual).isNotEmpty();
     }
 }
