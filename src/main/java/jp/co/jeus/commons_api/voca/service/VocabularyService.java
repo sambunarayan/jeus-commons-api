@@ -8,7 +8,6 @@ import jp.co.jeus.commons_api.voca.dto.VocaSearchResponseDto;
 import jp.co.jeus.commons_api.voca.dto.VocabularyDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
