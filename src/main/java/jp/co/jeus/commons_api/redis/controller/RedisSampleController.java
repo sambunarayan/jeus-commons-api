@@ -24,6 +24,7 @@ public class RedisSampleController {
         redisTemplate.delete("redis-tutorial:map");
         redisTemplate.opsForHash()
                 .putAll("redis-tutorial:map", redisSampleData.getMap());
+
     }
 
     @GetMapping
