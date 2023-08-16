@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
+
 @RestController
 @RequestMapping(value = "/SampleRedis")
 public class RedisSampleController {
@@ -17,14 +19,16 @@ public class RedisSampleController {
         redisTemplate.delete("redis-tutorial:string");
         redisTemplate.opsForValue()
                 .set("redis-tutorial:string", redisSampleData.getString());
+        redisTemplate.expire("redis-tutorial:string", Duration.ofSeconds(60));
         redisTemplate.delete("redis-tutorial:list");
         redisTemplate.opsForList()
                 .rightPushAll("redis-tutorial:list",
                         redisSampleData.getList().toArray(new String[0]));
+        redisTemplate.expire("redis-tutorial:list", Duration.ofSeconds(60));
         redisTemplate.delete("redis-tutorial:map");
         redisTemplate.opsForHash()
                 .putAll("redis-tutorial:map", redisSampleData.getMap());
-
+        redisTemplate.expire("redis-tutorial:map", Duration.ofSeconds(60));
     }
 
     @GetMapping
