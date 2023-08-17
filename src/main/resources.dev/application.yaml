@@ -20,5 +20,13 @@ spring:
     port: 6379
     password: null
     database: 0
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      username: appuser
+      password: appuser
+      authentication-database: appdb
+      database: appdb
 logging:
   config: classpath:log4j2-spring.xml
