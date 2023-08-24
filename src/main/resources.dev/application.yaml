@@ -24,8 +24,8 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      username: appuser
-      password: appuser
+      username: springUser
+      password: springUser
       authentication-database: appdb
       database: appdb
 logging:
