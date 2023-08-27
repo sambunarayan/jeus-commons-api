@@ -20,4 +20,8 @@ public class CustomerService {
     public void insert(Customer customer) {
         customerRepository.save(customer);
     }
+
+    public void delete(String customerId) {
+        customerRepository.deleteByCustomerId(customerId);
+    }
 }

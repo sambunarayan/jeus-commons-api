@@ -23,4 +23,9 @@ public class CustomerController {
     public void save(@RequestBody Customer customer) {
         customerService.insert(customer);
     }
+
+    @DeleteMapping("del")
+    public void delete(@RequestBody Customer customer) {
+        customerService.delete(customer.getCustomerId());
+    }
 }
