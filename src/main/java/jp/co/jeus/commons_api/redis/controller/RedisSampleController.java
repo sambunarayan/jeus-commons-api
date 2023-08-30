@@ -47,4 +47,11 @@ public class RedisSampleController {
         );
         return redisSampleData;
     }
+
+    @DeleteMapping
+    public void delete() {
+        redisTemplate.delete("redis-tutorial:string");
+        redisTemplate.delete("redis-tutorial:list");
+        redisTemplate.delete("redis-tutorial:map");
+    }
 }
