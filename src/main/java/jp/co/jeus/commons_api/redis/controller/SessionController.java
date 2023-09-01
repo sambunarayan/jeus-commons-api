@@ -38,4 +38,9 @@ public class SessionController {
         session.setMap((Map<String, String>)redisTemplate.opsForValue().get(sessionId));
         return session;
     }
+
+    @DeleteMapping("delete")
+    private void delete(@RequestParam("id") String sessionId) {
+
+    }
 }
